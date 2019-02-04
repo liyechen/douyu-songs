@@ -8,10 +8,14 @@ interface MusicListProps {
 
 export class MusicList extends React.Component <MusicListProps>{
     
-    renderItem(item: any) {
+    renderItem(item: any, idx: number) {
+        console.log(item, idx)
         return (
             <List.Item>
-                <MusicListItem name={`${item}`}>
+                <MusicListItem
+                    name={`${item}`}
+                    isPlaying={idx === 0}
+                >
                 </MusicListItem>
             </List.Item>
         )
@@ -20,13 +24,10 @@ export class MusicList extends React.Component <MusicListProps>{
     render() {
         return (
             <List
-                header={<div>Header</div>}
-                footer={<div>Footer</div>}
                 bordered
                 dataSource={this.props.data}
                 renderItem={this.renderItem}
             />
-            
         )
     }
 }
