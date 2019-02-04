@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 
 interface MusicListItemProps {
     name: string
@@ -7,6 +8,12 @@ interface MusicListItemProps {
 export class MusicListItem extends React.Component <MusicListItemProps> {
 
     render() {
-        return <div>{this.props.name}</div>
+        return (
+            <ListItemDiv>{this.props.name}</ListItemDiv>
+        )
     }
 }
+
+const ListItemDiv = styled.div`
+    height: 50px;
+`
