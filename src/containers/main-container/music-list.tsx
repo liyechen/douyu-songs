@@ -9,7 +9,6 @@ interface MusicListProps {
 export class MusicList extends React.Component <MusicListProps>{
     
     renderItem(item: any, idx: number) {
-        console.log(item, idx)
         return (
             <List.Item>
                 <MusicListItem
