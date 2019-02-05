@@ -19,9 +19,13 @@ function createWindow() {
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   mainWindow.on('closed', () => mainWindow = null);
 
-
   // debug
   mainWindow.webContents.openDevTools();
+
+  ipcMain.on('socket_data', function(data) {
+    mainWindow.webContents.send('socket_data', data)
+  })
+
 }
 
 app.on('ready', () => {
@@ -34,6 +38,7 @@ app.on('ready', () => {
   // ipcMain.on('SEND_DATA', (e, payload) => {
   //   TcpClient.sendDataToServer(payload);
   // });
+
   
 });
 

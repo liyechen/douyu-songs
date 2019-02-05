@@ -9,19 +9,19 @@ const ipcRenderer = electron.ipcRenderer
 
 export class MainContainer extends React.Component {
 
-    data = [
-        'Racing car sprays',
-        'Japanese princess to wed commoner.',
-        'Australian walks 100km after outback crash.',
-        'Man charged over missing wedding girl.',
-        'Los Angeles battles huge wildfiress.',
-    ];
+    musicList: string[] = ['first songs']
 
     // ipcRenderer = electron.ipcRenderer
     constructor(props: {}) {
         super(props)
+        this.state = {
+            musicList: this.musicList
+        }
         ipcRenderer.on('socket_data', (e: any, data: any) => {
-            console.log(e, data)
+            this.musicList.push(data)
+            this.setState({
+                musicList: this.musicList
+            })
         })
     }
 
@@ -30,7 +30,7 @@ export class MainContainer extends React.Component {
         return  (
             <WindowDiv>
                 <MusicList
-                    data={this.data}
+                    data={this.musicList}
                 ></MusicList>
             </WindowDiv>
         )
@@ -39,4 +39,5 @@ export class MainContainer extends React.Component {
 
 const WindowDiv = styled.div`
     background: #34343e;
+    height: 328px;
 `

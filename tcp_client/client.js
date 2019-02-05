@@ -8,8 +8,9 @@ class TCPClient {
     this.bufList = [];
     this.totalLenth = 0;
     this.dataHandler = () => {
-      console.log('bufList:', this.bufList)
-      // const str = 
+      // process.send(this.bufList)
+      this.bufList = [];
+      this.totalLenth = 0;
     };
     this.addr = '';
     this.port = null;
@@ -48,7 +49,8 @@ class TCPClient {
       this.client = new net.Socket();
       this.client.on('data', (chunck) => {
         try {
-          this.onReceiveData(chunck);
+          // this.onReceiveData(chunck);
+          process.send(chunck.toString())
         } catch (e) {
           console.log('onDataError', e.message); // eslint-disable-line no-console
         }
